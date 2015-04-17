@@ -2,7 +2,7 @@
 <html ng-app="myApp">
     <head>
         <title>Document</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="src/bootstrap.min.css">
         <style>
 			html, body, input, select, textarea
 			{
@@ -27,18 +27,35 @@
        		</nav>
        	</header>
        	
-       	<div class="container">
-       		<div ng-controller="mainController">
+       	<div class="container" ng-controller="mainController">
+       		<div>
        			<div>
        				<label>What is your twitter handle?</label>
        				<input type="text" ng-model="handle"/>
        			</div>
+            <div class="alert" ng-class="{'alert-warning': handle.length < handlelength, 'alert-danger': handle.length > handlelength}" ng-if="handle.length !== handlelength">
+               <div ng-show="handle.length < handlelength">
+                 Handle length is less than {{handlelength}}!
+               </div> 
+
+               <div ng-show="handle.length > handlelength">
+                 Handle length is grater than {{handlelength}}!
+               </div>
+
+            </div>
+
        			<hr/>
        			<h1>twitter.com/{{ lowercaseHandle()}}</h1>
        		</div>
+          <h3>Rules</h3>
+          <ul>
+            <li ng-repeat="rule in rules">
+              {{rule.rulename}}
+            </li>
+          </ul>  
        	</div>        
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="src/jquery.min.js"></script>
+        <script src="src/angular.min.js"></script>
         <script src="app.js"></script>
     </body>
 </html>
