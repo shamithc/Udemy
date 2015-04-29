@@ -38,3 +38,11 @@ myApp.controller('secondController', ['$scope', '$routeParams', 'nameService', f
 	$scope.num = $routeParams.num || 0;
 	$scope.nameLength = nameService.nameLength();
 }]);
+
+myApp.directive('searchResult', [function(){
+	// Runs during compile
+	return {
+		templateUrl: 'directives/search_result.html',
+		replace: true
+	};
+}]);
