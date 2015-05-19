@@ -26,11 +26,12 @@ myApp.service('nameService', function(){
 });
 
 myApp.controller('mainController', ['$scope', 'nameService', function($scope, nameService){
-	console.log('Yes, I am here');
 	$scope.name = nameService.name;
+	
 	$scope.$watch('name', function(newValue){
 		nameService.name = newValue;
 	});
+
 	$scope.people = [
 		{
 			name: "Gladson",
@@ -53,11 +54,9 @@ myApp.controller('mainController', ['$scope', 'nameService', function($scope, na
 			country: "Holland",
 			zip: 49422
 	 	},
-
 	];
 
 	$scope.formattedAddress = function(person){
-		console.log(person)
 		return person.city + ', ' + person.state + ', ' + person.country + ', ' + person.zip
 
 	};
@@ -78,6 +77,13 @@ myApp.directive('searchResult', [function(){
 		scope: {
 			 personObject: "=",
 			 formattedAddressFunction: "&"
+		},
+		link: function(scope, elements, attrs){
+			console.log(scope);
+			if(scope.personObject.name == "Peter"){
+				elements.removeAttr('class');
+			}
+			console.log(elements.html())
 		}	
 	};
 }]);
