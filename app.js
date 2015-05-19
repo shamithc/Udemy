@@ -31,6 +31,20 @@ myApp.controller('mainController', ['$scope', 'nameService', function($scope, na
 	$scope.$watch('name', function(newValue){
 		nameService.name = newValue;
 	});
+	$scope.person = {
+		name: "Gladson",
+		city: "abc",
+		state: "pqr",
+		country: "xyz",
+		zip: 123456
+	}
+
+	$scope.formattedAddress = function(person){
+		console.log(person)
+		return person.city + ', ' + person.state + ', ' + person.country + ', ' + person.zip
+
+	};
+
 }]);
 
 myApp.controller('secondController', ['$scope', '$routeParams', 'nameService', function($scope, $routeParams, nameService){
@@ -43,6 +57,10 @@ myApp.directive('searchResult', [function(){
 	// Runs during compile
 	return {
 		templateUrl: 'directives/search_result.html',
-		replace: true
+		replace: true,
+		scope: {
+			 personObject: "=",
+			 formattedAddressFunction: "&"
+		}	
 	};
 }]);
