@@ -31,13 +31,30 @@ myApp.controller('mainController', ['$scope', 'nameService', function($scope, na
 	$scope.$watch('name', function(newValue){
 		nameService.name = newValue;
 	});
-	$scope.person = {
-		name: "Gladson",
-		city: "abc",
-		state: "pqr",
-		country: "xyz",
-		zip: 123456
-	}
+	$scope.people = [
+		{
+			name: "Gladson",
+			city: "Cochin",
+			state: "Keral",
+			country: "India",
+			zip: 678362
+	 	},
+	 	{
+			name: "Anil Dias",
+				city: "Cochin",
+			state: "Keral",
+			country: "India",
+			zip: 382611
+	 	},
+	 	{
+			name: "Peter",
+			city: "Oosterwolde",
+			state: "Friesland",
+			country: "Holland",
+			zip: 49422
+	 	},
+
+	];
 
 	$scope.formattedAddress = function(person){
 		console.log(person)
